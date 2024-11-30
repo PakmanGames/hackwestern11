@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 export default function Navbar() {
     return (
         <header className="border-b bg-white">
@@ -36,9 +38,11 @@ export default function Navbar() {
                             Today's Paper
                         </a>
                     </div>
-                    <div className="text-5xl font-serif italic">
-                        Not The New York Times
-                    </div>
+                    <Link href={`/`}>
+                        <div className="text-5xl font-serif italic">
+                            Not The New York Times
+                        </div>
+                    </Link>
                     <div>
                         <span>Stock info</span>
                     </div>
