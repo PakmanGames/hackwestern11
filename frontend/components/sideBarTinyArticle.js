@@ -3,7 +3,7 @@ import temp3 from "@/public/tempImage3.png";
 
 export default function SidebarTinyArticle() {
     return (
-        <div className="max-w-44">
+        <div className="max-w-36">
           <div>
             <Image
               src={temp3}

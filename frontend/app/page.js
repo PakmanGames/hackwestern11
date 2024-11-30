@@ -3,8 +3,8 @@ import SideBar from "@/components/sideBar";
 
 export default function Home() {
   return (
-    <div className="flex">
-      <div className="items-center justify-center pl-48">
+    <div className="flex px-48">
+      <div className="items-center justify-center">
         <ArticleBlock />
         <ArticleBlock />
         <ArticleBlock />
