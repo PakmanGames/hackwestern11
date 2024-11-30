@@ -8,6 +8,7 @@ app = FastAPI()
 list_of_articles = []
 current_index = 0
 
+
 class ScrapeRequest(BaseModel):
     url: str
 
@@ -22,7 +23,6 @@ def scrape_info(request: ScrapeRequest):
     global current_index
     global list_of_articles
     url = request.url
-    # print(url)
     article = NewsPlease.from_url(url)
     new_article = {
         "headline": article.title,
@@ -31,10 +31,17 @@ def scrape_info(request: ScrapeRequest):
         "article_index": current_index
     }
     current_index += 1
-    # print(article)
-    # print(article.title)
-    # print(article.description)
-    # print(article.maintext)
-    # print(article.image_url)
     list_of_articles.append(new_article)
     return new_article
+
+
+@app.get("/all_articles")
+def get_all_articles():
+    return list_of_articles
+
+
+@app.delete("/clear_articles")
+def clear_articles():
+    global list_of_articles
+    list_of_articles = []
+    return {"message": "All articles have been deleted"}
