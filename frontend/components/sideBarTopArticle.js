@@ -3,7 +3,7 @@ import temp2 from "@/public/tempImage2.png";
 
 export default function SidebarTopArticle() {
   return (
-    <div className="max-w-md mx-auto">
+    <div className="max-w-md mx-auto p-4 pb-6">
       <div>
         <Image
           src={temp2}
