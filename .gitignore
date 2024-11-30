@@ -705,5 +705,5 @@ sketch
 # that are supposed to be shared within teams.
 
 
-
 # End of https://www.toptal.com/developers/gitignore/api/node,nextjs,react,macos,visualstudiocode,intellij,webstorm,webstorm+all,python,pycharm+all
+/backthon/.idea
