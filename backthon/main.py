@@ -1,8 +1,10 @@
+# https://github.com/fhamborg/news-please
 from newsplease import NewsPlease
 from typing import Union
 from pydantic import BaseModel
 from fastapi import FastAPI
 import requests
+import feedparser
 
 app = FastAPI()
 
@@ -29,6 +31,7 @@ def scrape_info(request: ScrapeRequest):
     new_article = {
         "headline": article.title,
         "content": article.maintext,
+        "description": article.description,
         "image_caption": image_caption,
         "article_index": current_index
     }
@@ -48,6 +51,18 @@ def clear_articles():
     list_of_articles = []
     return {"message": "All articles have been deleted"}
 
+
+@app.post("/rss_feed")
+def rss_feed(request: ScrapeRequest):
+    url = request.url
+    feed = feedparser.parse(url)
+    if feed.status == 200:
+        for entry in feed.entries:
+            print(entry.title)
+            print(entry.link)
+    else:
+        print("Failed to get RSS feed. Status code:", feed.status)
+    return {"message": "RSS feed has been parsed"}
 
 # https://developers.cloudflare.com/workers-ai/models/llava-1.5-7b-hf/
 def get_caption(image_url):
