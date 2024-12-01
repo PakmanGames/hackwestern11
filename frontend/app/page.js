@@ -6,6 +6,7 @@ import SidebarTinyArticle from "@/components/sideBarTinyArticle";
 import SidebarLongArticle from "@/components/sideBarLongArticle";
 import { useEffect } from 'react';
 import triggerVoiceflowEvent from '../utils/voiceflowApi';
+import { getData } from "@/utils/getData";
 
 /*
 // test data
