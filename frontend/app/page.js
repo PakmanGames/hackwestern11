@@ -152,7 +152,7 @@ const info = [
 export const contextInfo = createContext(null);
 
 export default function Home() {
-  const firstSevenInfo = info.slice(0, 7);
+  const firstSevenInfo = info.slice(0, 1);
   const EighthInfo = info.slice(7, 8);
   const ninthToEleventh = info.slice(8, 10);
   const twelthToTwenty = info.slice(10, 20);

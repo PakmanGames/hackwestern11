@@ -1,9 +1,26 @@
 'use client';
+import { useEffect, useState } from "react";
+import { fetchImages } from "@/utils/fetchImages";
+
 import Image from "next/image";
 import Link from "next/link";
 import temp from "@/public/tempImage.png";
 
 export default function ArticleBlock({ article }) {
+    const [images, setImages] = useState([]);
+    useEffect(() => {
+        async function getImages() {
+          try {
+            const fetchedImages = await fetchImages(article.headline);
+            setImages(fetchedImages);
+          } catch (error) {
+            console.error('Error fetching images:', error);
+          }
+        }
+    
+        getImages();
+      }, [article.headline]);
+
     return (
         <Link href={
                 { 
@@ -28,7 +45,7 @@ export default function ArticleBlock({ article }) {
                 </div>
                 <div>
                     <Image
-                        src={temp}
+                        src={images[0] ? images[0].link : temp}
                         alt="Placeholder Image"
                         width={800}
                         height={800}
