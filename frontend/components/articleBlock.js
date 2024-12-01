@@ -1,14 +1,9 @@
 'use client';
-import { useContext } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import temp from "@/public/tempImage.png";
 
-import { contextInfo } from "@/app/page";
-
 export default function ArticleBlock({ article }) {
-    // const info = useContext(contextInfo);
-
     return (
         <Link href={
                 { 
