@@ -5,11 +5,13 @@ from pydantic import BaseModel
 from fastapi import FastAPI
 import requests
 import feedparser
+import hashlib
 
 app = FastAPI()
 
 list_of_articles = []
 current_index = 0
+stored_strings = set()
 
 
 class ScrapeRequest(BaseModel):
@@ -48,21 +50,32 @@ def get_all_articles():
 @app.delete("/clear_articles")
 def clear_articles():
     global list_of_articles
+    global stored_strings
+    global current_index
     list_of_articles = []
+    stored_strings = set()
+    current_index = 0
     return {"message": "All articles have been deleted"}
 
 
 @app.post("/rss_feed")
 def rss_feed(request: ScrapeRequest):
+    scraped = 0
     url = request.url
     feed = feedparser.parse(url)
     if feed.status == 200:
         for entry in feed.entries:
-            print(entry.title)
-            print(entry.link)
+            hashed = hash_string(entry.link)
+            if hashed in stored_strings:
+                print("Hash is repeated.")
+            else:
+                stored_strings.add(hashed)
+                scrape_info(ScrapeRequest(url=entry.link))
+                scraped += 1
     else:
         print("Failed to get RSS feed. Status code:", feed.status)
-    return {"message": "RSS feed has been parsed"}
+    return {"message": f"RSS feed has been parsed: {scraped} items"}
+
 
 # https://developers.cloudflare.com/workers-ai/models/llava-1.5-7b-hf/
 def get_caption(image_url):
@@ -76,3 +89,8 @@ def get_caption(image_url):
         return data.get('description', 'No caption found')
     else:
         return f"Error: {response.status_code}"
+
+
+def hash_string(string):
+    hash_object = hashlib.sha256(string.encode())
+    return hash_object.hexdigest()
