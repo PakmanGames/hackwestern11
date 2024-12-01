@@ -4,7 +4,10 @@ import ArticleBlock from "@/components/articleBlock";
 import SidebarTopArticle from "@/components/sideBarTopArticle";
 import SidebarTinyArticle from "@/components/sideBarTinyArticle";
 import SidebarLongArticle from "@/components/sideBarLongArticle";
+import { useEffect } from 'react';
+import triggerVoiceflowEvent from '../utils/voiceflowApi';
 
+/*
 // test data
 const info = [
   {
@@ -148,10 +151,38 @@ const info = [
     "article_index": 19
   }
 ];
+*/
 
 export const contextInfo = createContext(null);
 
 export default function Home() {
+  const [info, setInfo] = useState([]);
+
+  useEffect(() => {
+    // Fetch the data when the component mounts
+    const fetchData = async () => {
+      const data = await getData();
+      setInfo(data);
+    };
+
+    fetchData();
+
+    // Voiceflow event trigger
+    triggerVoiceflowEvent('mahbod.miraly@gmail.com', 'web_visit');
+  }, []);
+
+  /*
+// Event calling voiceflow
+// ------------------------------
+  useEffect(() => {
+    // Replace 'your-user-id' with the actual user ID or a way to get it
+    triggerVoiceflowEvent('mahbod.miraly@gmail.com', 'web_visit');
+  }, []); // Empty dependency array means this runs once when the component mounts
+
+  return <Component {...pageProps} />;
+// ------------------------------
+*/
+
   const firstSevenInfo = info.slice(0, 1);
   const EighthInfo = info.slice(7, 8);
   const ninthToEleventh = info.slice(8, 10);
