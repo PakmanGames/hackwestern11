@@ -158,7 +158,7 @@ export default function Home() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch('/test_data.json');
+        const response = await fetch('/api_response.json');
         if (!response.ok) {
           throw new Error('Failed to fetch data');
         }
@@ -173,7 +173,7 @@ export default function Home() {
     fetchData();
   }, []);
 
-  const firstSevenInfo = info.slice(0, 1);
+  const firstSevenInfo = info.slice(0, 7);
   const EighthInfo = info.slice(7, 8);
   const ninthToEleventh = info.slice(8, 10);
   const twelthToTwenty = info.slice(10, 20);

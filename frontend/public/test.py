@@ -44,7 +44,6 @@ def save_request():
         # Save the data to a text file
         with open('api_response.json', 'w', encoding='utf-8') as file:
             file.write(data)
-            
 
         # Respond to the client
         return jsonify({"message": "Data received and saved successfully", "data": data}), 200
@@ -53,5 +52,5 @@ def save_request():
         return jsonify({"error": "Internal Server Error", "details": str(e)}), 500
 
 if __name__ == '__main__':
-    app.run(host='localhost', port=4080, debug=True)
     startup()
+    app.run(host='localhost', port=4080, debug=True)
