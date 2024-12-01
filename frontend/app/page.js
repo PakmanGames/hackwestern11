@@ -28,20 +28,22 @@ const info = [
   }
 ];
 
-export const contextInfo = createContext(info);
+export const contextInfo = createContext(null);
 
 export default function Home() {
 
   return (
-    <div className="flex px-48">
-      <div className="items-center justify-center">
-        <ArticleBlock info={info[0]}/>
-        <ArticleBlock info={info[1]}/>
-        <ArticleBlock info={info[2]}/>
+    <contextInfo.Provider value={info}>
+      <div className="flex px-48">
+        <div className="items-center justify-center">
+          {info.map((article, index) => (
+            <ArticleBlock key={index} article={article} />
+          ))}
+        </div>
+        <div>
+          <SideBar />
+        </div>
       </div>
-      <div>
-        <SideBar />
-      </div>
-    </div>
+    </contextInfo.Provider>
   );
 }
