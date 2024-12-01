@@ -5,6 +5,7 @@ import SidebarTopArticle from "@/components/sideBarTopArticle";
 import SidebarTinyArticle from "@/components/sideBarTinyArticle";
 import SidebarLongArticle from "@/components/sideBarLongArticle";
 
+
 // test data
 // const info = [
 //   {
@@ -154,43 +155,22 @@ export const contextInfo = createContext(null);
 export default function Home() {
   const [info, setInfo] = useState([]);
 
-  const fetchWorkflowOutput = async (eventName) => {
-    try {
-      const response = await fetch('/api/handler', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          action: {
-            type: 'event',
-            payload: {
-              event: {
-                name: eventName, // Pass the event name dynamically
-              },
-            },
-          },
-        }),
-      });
-  
-      if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`);
-      }
-  
-      const data = await response.json();
-      console.log('Workflow Output:', data);
-      return data; // Return the workflow data
-    } catch (error) {
-      console.error('Error fetching workflow output:', error);
-      return null;
-    }
-  };
-  
-
   useEffect(() => {
-    const startWorkflow = async () => {
-      const data = await fetchWorkflowOutput('WORKING');
-      setInfo(data);
+    const fetchData = async () => {
+      try {
+        const response = await fetch('/test_data.json');
+        if (!response.ok) {
+          throw new Error('Failed to fetch data');
+        }
+        const data = await response.json();
+        console.log(data);
+        setInfo(data);
+      } catch (error) {
+        console.error('Error fetching JSON file:', error);
+      }
     };
-    startWorkflow();
+
+    fetchData();
   }, []);
 
   const firstSevenInfo = info.slice(0, 1);
