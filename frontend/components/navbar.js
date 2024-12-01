@@ -2,7 +2,7 @@ import Link from "next/link";
 
 export default function Navbar() {
     return (
-        <header className="border-b bg-white">
+        <header className="border-b bg-white px-48">
             <div className="container mx-auto px-4">
                 <div className="flex items-center justify-between py-2 text-sm text-gray-600">
                     <div className="flex items-center space-x-4">
@@ -33,7 +33,7 @@ export default function Navbar() {
                 </div>
                 <div className="flex items-center justify-between py-4">
                     <div className="flex flex-col items-left">
-                        <span>Saturday, November 30, 2024</span>
+                        <span>Sunday, December 1, 2024</span>
                         <a href="#" className="hover:underline">
                             Today's Paper
                         </a>
