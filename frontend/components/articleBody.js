@@ -1,7 +1,7 @@
 import Image from "next/image";
 import temp from "@/public/tempImage.png";
 
-export default function ArticleBody() {
+export default function ArticleBody({ content }) {
   return (
     <div className="max-w-3xl mx-auto py-8">
       <div className="flex items-center gap-4 mb-6">
@@ -19,30 +19,7 @@ export default function ArticleBody() {
       </div>
 
       <div className="space-y-6 text-gray-800 leading-relaxed">
-        <p>
-            lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
-            minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-            aliquip ex ea commodo consequat. Duis aute irure dolor in
-        </p>
-        <p>
-            lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
-            minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-            aliquip ex ea commodo consequat. Duis aute irure dolor in
-        </p>
-        <p>
-            lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
-            minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-            aliquip ex ea commodo consequat. Duis aute irure dolor in
-        </p>
-        <p>
-            lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
-            minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-            aliquip ex ea commodo consequat. Duis aute irure dolor in
-        </p>
+        {content}
       </div>
     </div>
   );
