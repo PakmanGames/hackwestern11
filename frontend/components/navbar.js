@@ -1,4 +1,6 @@
 import Link from "next/link";
+import Image from "next/image";
+import nnytLogo from "@/public/nnytlogo.png";
 
 export default function Navbar() {
     return (
@@ -40,7 +42,7 @@ export default function Navbar() {
                     </div>
                     <Link href={`/`}>
                         <div className="text-5xl font-serif italic">
-                            Not The New York Times
+                            <Image src={nnytLogo} alt="NNYT Logo" width={650} />
                         </div>
                     </Link>
                     <div>
