@@ -2,6 +2,11 @@
 @tailwind components;
 @tailwind utilities;
 
+@font-face {
+  font-family: cheltenham;
+  src: url('./fonts/cheltenhamNormal.ttf');
+}
+
 :root {
   --background: #ffffff;
   --foreground: #171717;
@@ -17,5 +22,5 @@
 body {
   color: var(--foreground);
   background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: cheltenham, Arial, Helvetica, sans-serif;
 }
