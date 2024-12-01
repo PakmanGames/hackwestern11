@@ -52,5 +52,5 @@ def save_request():
         return jsonify({"error": "Internal Server Error", "details": str(e)}), 500
 
 if __name__ == '__main__':
-    startup()
     app.run(host='localhost', port=4080, debug=True)
+    # startup()
